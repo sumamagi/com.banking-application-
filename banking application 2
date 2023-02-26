@@ -1,0 +1,135 @@
+package com.banking.system;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class BankingModel {
+
+	private BankController bankController;
+
+	public BankingModel(BankController bankController) {
+		this.bankController = bankController;
+	}
+
+	private int balance;
+	private int previousTransaction;
+	private String userName;
+	private String userId;
+
+	public BankingModel(String userName, String userId) {
+		this.userName = userName;
+		this.userId = userId;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setdeposit(int amount) {
+		if (amount != 0) {
+			balance = balance + amount;
+			previousTransaction = amount;
+		}
+	}
+
+	public void setwithdraw(int amount) {
+		if (amount != 0) {
+			balance = balance - amount;
+			previousTransaction = -amount;
+		}
+	}
+
+	public String getUsername() {
+
+		return userName;
+	}
+
+	public String getAccountNo() {
+
+		return userId;
+	}
+
+	public void showDepositSuccess(int amount) {
+		System.out.printf("Deposit of %d was successful.%n", amount);
+
+	}
+
+	public void showLoginSuccess(String username) {
+		String message = String.format("Welcome, %s!", username);
+		bankController.display(message);
+	}
+
+	public void showBalance(int balance) {
+		String message = String.format("Current balance: %d", balance);
+		bankController.display(message);
+	}
+
+	public int getDepositAmount(int amount) {
+		int depositAmount = 0;
+		try {
+			depositAmount = amount;
+		} catch (InputMismatchException e) {
+			bankController.display("Invalid input.");
+		}
+		return depositAmount;
+
+	}
+
+	public int getWithdrawAmount(int amount) {
+		int withdrawAmount = 0;
+		try {
+			withdrawAmount = amount;
+		} catch (InputMismatchException e) {
+			bankController.display("Invalid input.");
+		}
+		return withdrawAmount;
+
+	}
+
+	public void showPreviousTransaction(int getpreviousTransaction) {
+
+		if (previousTransaction > 0) {
+			String message = String.format("Deposited: %d", previousTransaction);
+			bankController.display(message);
+		} else if (previousTransaction < 0) {
+			String message = String.format("Withdrawn: %d", Math.abs(previousTransaction));
+			bankController.display(message);
+		} else {
+			bankController.display("No transaction occurred.");
+		}
+	}
+
+	public void showExitMessage() {
+		String message = "Thank you for banking with us. Goodbye!";
+		bankController.display(message);
+	}
+
+	public void showInvalidOption() {
+		String message = "Invalid option selected. Please try again.";
+		bankController.display(message);
+	}
+
+	public void showMessage(String message) {
+		bankController.showMessage(message);
+	}
+
+	public void showWithdrawSuccess(int amount) {
+		System.out.printf("Withdrawal of %d was successful.%n", amount);
+	}
+
+	public int getpreviousTransaction() {
+
+		return previousTransaction;
+	}
+
+	public int getWithdrawAmount() {
+
+		return 0;
+	}
+
+	public int getDepositAmount() {
+		
+		return 0;
+	}
+
+}
