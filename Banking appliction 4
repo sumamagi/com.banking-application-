@@ -1,0 +1,22 @@
+package com.banking.system;
+
+import java.util.Scanner;
+import com.banking.system.*;
+
+public class LoginUser {
+	public static boolean checkinput(String userName, String userId) {
+		boolean canLogin = false;
+		if (userName.equals("sumathi") && userId.equals("12061998")) {
+			return true;
+		} else if (userName.equals("Thabathi") && userId.equals("12061997")) {
+			return true;
+		} else if (userName.equals("Karthi") && userId.equals("12061996")) {
+			return true;
+		} else if (userName.equals("pavi") && userId.equals("12061995")) {
+			return true;
+		} else if (userName.equals("Abitha") && userId.equals("12061994")) {
+			return true;
+		}
+		return false;
+	}
+}
