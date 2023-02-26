@@ -1,0 +1,103 @@
+package com.banking.system;
+
+import java.util.Scanner;
+
+public class BankController {
+	private Bankingview bankingview;
+
+	public BankController(Bankingview bankingview) {
+		this.bankingview = bankingview;
+	}
+
+	private BankingModel bankingModel;
+
+	public BankController(BankingModel bankingModel) {
+		this.bankingModel = bankingModel;
+	}
+	
+
+	public BankController() {
+		bankingModel = new BankingModel("Sumathi", "12061998");
+		bankingModel = new BankingModel("Thabathi", "12061997");
+		bankingModel = new BankingModel("Karthi", "12061996");
+		bankingModel = new BankingModel("pavi", "12061995");
+		bankingModel = new BankingModel("Abitha", "12061994");
+
+	}
+
+	public BankingModel getBankingModel() {
+		return bankingModel;
+	}
+
+	public void deposit(int amount) {
+		bankingModel.setdeposit(amount);
+		bankingModel.showDepositSuccess(amount);
+	}
+
+	public void withdraw(int amount) {
+		bankingModel.setwithdraw(amount);
+		 bankingModel.showWithdrawSuccess(amount);
+		
+	}
+    public void showMenu() {
+		 int  option = bankingview.showMenu();
+        switch (option) {
+            case 1:
+                String username = bankingModel.getUsername();
+                String accountNo = bankingModel.getAccountNo();
+                if (LoginUser.checkinput(username, accountNo)) {
+                    bankingModel.showLoginSuccess(username);
+                    int option1;
+                    do {
+                       
+                        switch (option1) {
+                            case 2:
+                                bankingModel.showBalance(bankingModel.getBalance());
+                                break;
+                            case 3:
+                                int depositAmount = bankingModel.getDepositAmount();
+                                deposit(depositAmount);
+                                break;
+                            case 4:
+                                int withdrawAmount = bankingModel.getWithdrawAmount();
+                                withdraw(withdrawAmount);
+                                break;
+                            case 5:
+                                bankingModel.showPreviousTransaction(bankingModel.getpreviousTransaction());
+                                break;
+                            case 6:
+                                bankingModel.showExitMessage();
+                                break;
+                            default:
+                                bankingModel.showInvalidOption();
+                                break;
+                        }
+                    } while (option1 != 6);
+                } else {
+                    bankingModel.showInvalidOption();
+                }
+                break;
+            default:
+                bankingModel.showInvalidOption();
+                break;
+        }
+    }
+
+	public void display(String message) {
+		  bankingModel.showMessage(message);
+		}
+
+	public void showMessage(String message) {
+		
+		
+	}
+	}
+
+
+
+	
+
+	
+	           
+
+
